@@ -2,7 +2,6 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
-#include <chrono>
 #include "Point.hpp"
 #include "testRange.hpp"
 
@@ -57,10 +56,7 @@ int main() {
     //testMagicI(0x1f800000, 0x1fffffff);
     auto fu = [](int i) -> Point<int, float> { return testOne<float, int>(fsqrt_, sqrtf, i, "one sqrt itration done : "); };
     std::cout << "hello!\n";
-    auto start = std::chrono::steady_clock::now();
     auto r = testRange<Point<int, float>, decltype(fu), decltype(min<Point<int, float>>)>(0x1fbb4f00, 0x1fbb4fff, fu, min, 4);
-    auto end = std::chrono::steady_clock::now();
     std::cout << "\nBest magic number is : " << r.magic << "\nAnd maximum relative error is : " << r.err << std::endl;
     auto diff = end - start;
-    std::cout << "\n" << std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
 }
