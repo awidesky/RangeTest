@@ -5,6 +5,7 @@
 #include <thread>
 #include <vector>
 #include <utility>
+#include <chrono>
 
 template <typename R, typename Func, typename Binop>
 R testRange(int from, int end, Func f, Binop op, int pool) {
@@ -14,6 +15,8 @@ R testRange(int from, int end, Func f, Binop op, int pool) {
   int to = cnt + from;
   
   std::vector<std::future<R>> v;
+
+  auto start = std::chrono::steady_clock::now();
   for(int i = 0; i < pool; i++) {
     v.push_back(std::async(std::launch::async, [from, to, &f, &op](){
       R var = f(from);
@@ -37,6 +40,10 @@ R testRange(int from, int end, Func f, Binop op, int pool) {
     std::cout << "\n#" << j - 1 << " task executed\n";
     re = op(v[j].get(), re);
   }
+
+  auto end = std::chrono::steady_clock::now();
+  auto diff = end - start;
+  std::cout << "\n" << std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
   return re;
 }
 
