@@ -38,7 +38,7 @@ Point<M,T> testOne(T (*f)(T, int), T (*g)(T), M magic, std::string st) {
 		}
 	}
 	p.err = max;
-	std::cout << std::string("\n").append(st); //<< magic;// << "\navg :" << total / cnt << "\nmax : " << max << "\nin : "<< in;
+	//std::cout << std::string("\n").append(st); //<< magic;// << "\navg :" << total / cnt << "\nmax : " << max << "\nin : "<< in;
     return p;
 }
 
@@ -46,17 +46,15 @@ template <typename T>
 T min(T a, T b) {
   return (a < b) ? a : b;
 }
-
 /*
 Best magic number is : 1fbb4f2d
 And maximum relative error is : 0.0347475
 16267.6 ms in i5-4590S $3.00GHz, 4GB ram
 */
 int main() {
-    //testMagicI(0x1f800000, 0x1fffffff);
+    //testMagicI(0x1fbb4f00,0x1fbb4fff); //0x1fbb7ff0);
     auto fu = [](int i) -> Point<int, float> { return testOne<float, int>(fsqrt_, sqrtf, i, "one sqrt itration done : "); };
     std::cout << "hello!\n";
-    auto r = testRange<Point<int, float>, decltype(fu), decltype(min<Point<int, float>>)>(0x1fbb4f00, 0x1fbb4fff, fu, min, 4);
+    auto r = testRange<Point<int, float>, decltype(fu), decltype(min<Point<int, float>>)>(0x1fbb0000, 0x1fbbffff, fu, min, 8);
     std::cout << "\nBest magic number is : " << r.magic << "\nAnd maximum relative error is : " << r.err << std::endl;
-    auto diff = end - start;
 }
