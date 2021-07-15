@@ -56,5 +56,5 @@ int main() {
     auto fu = [](int i) -> Point<int, float> { return testOne<float, int>(fsqrt_, sqrtf, i, "one sqrt itration done : "); };
     std::cout << "hello!\n";
     auto r = testRange<Point<int, float>, decltype(fu), decltype(min<Point<int, float>>)>(0x1fbb0000, 0x1fbbffff, fu, min, 8);
-    std::cout << "\nBest magic number is : " << r.magic << "\nAnd maximum relative error is : " << r.err << std::endl;
+    std::cout << "\nBest magic number is : " << std::hex << r.magic << "\nAnd maximum relative error is : " << std::dec << r.err << std::endl;
 }
