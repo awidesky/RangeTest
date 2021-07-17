@@ -48,11 +48,18 @@ template <typename T>
 T min(T a, T b) {
   return (a < b) ? a : b;
 }
-/*
+/* no - newton
 Best magic number is : 1fbb4f2d
 And maximum relative error is : 0.0347475
 16267.6 ms in i5-4590S $3.00GHz, 4GB ram
 */
+
+/* newton (in my laptop)
+884304 ms
+Best magic number is : 1fbb67a4
+And maximum relative error is : 0.000601053
+*/
+
 int main() {
     //testMagicI(0x1fbb4f00,0x1fbb4fff); //0x1fbb7ff0);
     auto fu = [](int i) -> MyPoint<int, float> { return testOne<float, int>(fsqrt_, sqrtf, i, "one sqrt itration done : "); };
