@@ -41,8 +41,8 @@ R testRange(int from, int end, Func f, Binop op, int pool) {
     std::cout << "\n#" << j - 1 << " task executed\n";
     re = op(v[j].get(), re);
   }
-  auto end1 = std::chrono::steady_clock::now();
-  auto diff = end1 - start;
+  auto endTime = std::chrono::steady_clock::now();
+  auto diff = endTime - start;
   std::cout << "\n" << std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
   return re;
 }
