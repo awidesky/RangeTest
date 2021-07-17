@@ -2,14 +2,16 @@
 #define POINT_HPP
 
 template <typename M, typename E>
-class Point {
+class MyPoint {
   public:
   M magic;
   E err;
 
-  Point(M ma, E er) : magic{ma}, err{er} {}
 
-  bool operator< (Point& oth) {
+  template <typename M, typename E>
+  MyPoint(M ma, E er) : magic{ma}, err{er} {}
+
+  bool operator< (MyPoint& oth) {
     return this->err < oth.err;
   }
 
