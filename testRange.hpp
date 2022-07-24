@@ -10,7 +10,7 @@
 
 template <typename R, typename Func, typename Comparator >
 std::vector<R> testRange(int from, int end, Func f, Comparator comp, std::ostream& out = std::cout, int pool=std::thread::hardware_concurrency()) {
-  out << "1thread number : " << std::thread::hardware_concurrency() << "\n";
+  out << "thread number : " << std::thread::hardware_concurrency() << "\n";
   out << "\ntesting from " << std::hex << from << " to " << std::hex << end << std::dec << "\t(" << (end - from) << ")" << "\n";
   int cnt = (end - from) / pool;
   int to = cnt + from;
