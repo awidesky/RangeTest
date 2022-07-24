@@ -1,0 +1,2 @@
+language = "cpp"
+run = "clang++ -pthread -std=c++17 -o main print/fsqrt/main.cpp && ./main"

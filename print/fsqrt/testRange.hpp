@@ -9,8 +9,8 @@
 #include <chrono>
 
 template <typename R, typename Func, typename Binop>
-R testRange(int from, int end, Func f, Binop op, int pool) {
-  std::cout << "1thread number : " << std::thread::hardware_concurrency() << "\n";
+R testRange(int from, int end, Func f, Binop op, int pool=std::thread::hardware_concurrency()) {
+  std::cout << "thread number : " << std::thread::hardware_concurrency() << "\n";
   std::cout << "\ntesting from " << std::hex << from << " to " << std::hex << end << std::dec << "\t(" << (end - from) << ")" << "\n";
   int cnt = (end - from) / pool;
   int to = cnt + from;
