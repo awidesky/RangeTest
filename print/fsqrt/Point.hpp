@@ -12,6 +12,9 @@ class Point {
   bool operator< (Point& oth) {
     return this->err < oth.err;
   }
+  bool operator> (Point& oth) {
+    return this->err > oth.err;
+  }
 
 };
 #endif

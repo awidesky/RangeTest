@@ -60,8 +60,8 @@ Point<M,T> testOne(T (*f)(T, int), T (*g)(T), M magic, std::string st) {
 }
 
 template <typename T>
-T min(T a, T b) {
-  return (a < b) ? a : b;
+bool min(T a, T b) {
+  return a > b;
 }
 /*
  // without newton
@@ -134,6 +134,10 @@ int main() {
     auto fu = [](int i) -> Point<int, float> { return testOne(fsqrt_new, sqrtf, i, "one sqrt itration done : "); };
   //auto fu = [](int i) -> Point<int, float> { return testOne<float, int>(fsqrt_, sqrtf, i, "one sqrt itration done : "); };
     std::cout << "hello!\n";
-    auto r = testRange<Point<int, float>, decltype(fu), decltype(min<Point<int, float>>)>(0x1fbb6700, 0x1fbb67e0, fu, min, 1);
-    std::cout << "\nBest magic number is : 0x" << std::hex << r.magic << "\nAnd maximum relative error is : " << std::dec << r.err << std::endl;
+    auto r = testRange<Point<int, float>, decltype(fu), decltype(min<Point<int, float>>)>(0x1fbb6770, 0x1fbb67e0, fu, min);
+    std::cout << "\nBest magic number is : 0x" << std::hex << r[0].magic << "\nAnd maximum relative error is : " << std::dec << r[0].err << "\n\nlist of result(s) :";
+    for(auto& a : r) {
+      std::cout << std::hex << a.magic << " : " << std::dec << a.err << "\n";
+    }
+    std::cout << std::endl;
 }
